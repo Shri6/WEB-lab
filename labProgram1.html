@@ -1,61 +1,37 @@
-<!DOCTYPE HTML>
 <html>
-    <head>
-        <style>
-        table, td, th
-        {
-            border: 1px solid black;
-            width: 33%;
-            text-align: center;
-            background-color: DarkGray;
-            border-collapse: collapse;
-        }
-        table {margin: auto; }
-        input {text-align:right; }
-        </style>
-            <script type="text/javascript">
-            function calc(clicked_id)
-            {   
-                var val1 = parseFloat(document.getElementById("value1").value);
-                var val2 = parseFloat(document.getElementById("value2").value);
-                if (isNaN(val1)||isNaN(val2))
-                    alert("ENTER VALID NUMBER");
-                else if(clicked_id=="add")
-                    document.getElementById("answer").value=val1+val2;
-                else if(clicked_id=="sub")
-                    document.getElementById("answer").value=val1-val2;
-                else if(clicked_id=="mul")
-                    document.getElementById("answer").value=val1*val2;
-                else if(clicked_id=="div")
-                    document.getElementById("answer").value=val1/val2;
-        }
-        function cls()
-        {
-            value1.value="0";
-            value2.value="0";
-            answer.value="";
-        }
-        </script>
-    </head>
+    <title>CALCULATOR</title>
+    <style>
+        input{ width:100%; padding:40px; } input:hover{background: silver;}
+    </style>
+
     <body>
-        <table>
-            <tr>
-                <th colspan="4"> SIMPLE CALCULATOR </th>
-            </tr>
-            <tr>
-                <td>value1</td><td><input type="text" id="value1" value="0"/></td>
-                <td>value2</td><td><input type="text" id= "value2" value="0"/></td>
-            </tr> 
-            <tr>
-                <td><input type="button" value="Addition" id = "add" onclick="calc(this.id)"/></td>
-                <td><input type="button" value="Subtraction" id = "sub" onclick="calc(this.id)"/></td>
-                <td><input type="button" value="Multiplication" id = "mul" onclick="calc(this.id)"/></td>
-                <td><input type="button" value="Division" id ="div" onclick="calc(this.id)"/></td>
-            </tr>
-            <tr>
-                <td>Answer:</td><td> <input type= "text" id="answer" value="" disabled/></td>
-                <td colspan="2"><input type= "button" value="CLEAR ALL" onclick="cls()"/><td>
-            </tr>
-        </table
+        <div align="center">
+        <h2>SIMPLE CALCULATOR</h2>
+        <script type="text/javascript">
+            a = ['1','2','3','+','4','5','6','-','7','8','9','*','C','0','=','/']
+            z = '<td> <input type="button" value="'
+            document.write('<form name="cal"><table><tr><td colspan="8"> <input type="text" name="get"></td></tr><tr>');
+            for (var i = 0; i<16; i++) 
+            {
+                if(i==12)
+                {
+                    document.write('<td> <input type="reset" value="C" ></td>');
+                    continue ;
+                }
+                if(i==14)
+                {
+                    document.write('<td> <input type="button" value="=" onclick="cal.get.value =eval(cal.get.value)"></td>');
+                    continue ;
+                }
+                if(i==3||i==7||i==11)
+                {
+                    document.write(z+a[i]+'" onclick="cal.get.value +=\''+a[i]+'\'"></td></tr><tr  rowspan="2">');
+                    continue ;
+                }
+                else
+                    document.write(z+a[i]+'" onclick="cal.get.value +=\''+a[i]+'\'"></td>');
+            }
+            doument.write('</table></form></div>');
+        </script> 
     </body>
 </html>
